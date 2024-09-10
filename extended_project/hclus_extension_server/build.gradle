@@ -1,0 +1,30 @@
+plugins {
+  id 'application'
+  id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = "22"
+    modules = [ 'javafx.controls', 'javafx.fxml']
+}
+
+dependencies {
+  implementation 'com.google.code.gson:gson:2.8.8'
+  implementation 'mysql:mysql-connector-java:8.0.17'
+}
+
+mainClassName='org.openjfx.Main'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.openjfx.Main'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy DuplicatesStrategy.EXCLUDE
+}

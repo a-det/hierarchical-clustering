@@ -1,0 +1,4 @@
+module:hclus_extension_client
+org.openjfx
+org.openjfx.connection
+org.openjfx.controller

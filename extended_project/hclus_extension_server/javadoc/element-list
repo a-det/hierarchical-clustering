@@ -1,0 +1,9 @@
+module:hclus_extension_server
+org.openjfx
+org.openjfx.clustering
+org.openjfx.connection
+org.openjfx.controller
+org.openjfx.conversion
+org.openjfx.data
+org.openjfx.database
+org.openjfx.distance

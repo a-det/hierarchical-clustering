@@ -1,0 +1,15 @@
+--module-path 'C:\\Users\\savin\\Desktop\\Progetto Map\\Estensione\\hclus_extension_client\\build\\classes\\java\\main;C:\\Users\\savin\\.gradle\\caches\\modules-2\\files-2.1\\org.openjfx\\javafx-fxml\\22\\d752e24f7e31e05d39d264daabeb821b4f8f8ded\\javafx-fxml-22-win.jar;C:\\Users\\savin\\.gradle\\caches\\modules-2\\files-2.1\\org.openjfx\\javafx-web\\22\\7f070194d957d0a2df18b9145f166357864ed009\\javafx-web-22-win.jar;C:\\Users\\savin\\.gradle\\caches\\modules-2\\files-2.1\\org.openjfx\\javafx-controls\\22\\3f2f311e6cff97b2571231e7d9d3acc6ac100d90\\javafx-controls-22-win.jar;C:\\Users\\savin\\.gradle\\caches\\modules-2\\files-2.1\\org.openjfx\\javafx-media\\22\\d2794846e2b63af93c0877ecf13a4da447e8a57e\\javafx-media-22-win.jar;C:\\Users\\savin\\.gradle\\caches\\modules-2\\files-2.1\\org.openjfx\\javafx-graphics\\22\\2f8bcc9f6fdbae49d10b1ef1c20f2fb59b551cc9\\javafx-graphics-22-win.jar;C:\\Users\\savin\\.gradle\\caches\\modules-2\\files-2.1\\org.openjfx\\javafx-base\\22\\9c3330e702359d5a2c212affe901f90838821c1a\\javafx-base-22-win.jar'
+-classpath 'C:\\Users\\savin\\Desktop\\Progetto Map\\Estensione\\hclus_extension_client\\build\\resources\\main'
+-d 'C:\\Users\\savin\\Desktop\\Progetto Map\\Estensione\\hclus_extension_client\\build\\docs\\javadoc'
+-doctitle 'hclus_extension_client API'
+-notimestamp 
+-quiet 
+-windowtitle 'hclus_extension_client API'
+'C:\\Users\\savin\\Desktop\\Progetto Map\\Estensione\\hclus_extension_client\\src\\main\\java\\module-info.java'
+'C:\\Users\\savin\\Desktop\\Progetto Map\\Estensione\\hclus_extension_client\\src\\main\\java\\org\\openjfx\\ClientGUI.java'
+'C:\\Users\\savin\\Desktop\\Progetto Map\\Estensione\\hclus_extension_client\\src\\main\\java\\org\\openjfx\\connection\\ClientOperations.java'
+'C:\\Users\\savin\\Desktop\\Progetto Map\\Estensione\\hclus_extension_client\\src\\main\\java\\org\\openjfx\\connection\\ServerHandler.java'
+'C:\\Users\\savin\\Desktop\\Progetto Map\\Estensione\\hclus_extension_client\\src\\main\\java\\org\\openjfx\\controller\\DBController.java'
+'C:\\Users\\savin\\Desktop\\Progetto Map\\Estensione\\hclus_extension_client\\src\\main\\java\\org\\openjfx\\controller\\MenuController.java'
+'C:\\Users\\savin\\Desktop\\Progetto Map\\Estensione\\hclus_extension_client\\src\\main\\java\\org\\openjfx\\controller\\WelcomeController.java'
+'C:\\Users\\savin\\Desktop\\Progetto Map\\Estensione\\hclus_extension_client\\src\\main\\java\\org\\openjfx\\Main.java'

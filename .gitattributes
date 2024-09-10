@@ -1,0 +1,9 @@
+base_project/H_CLUS_Client/javadoc/* linguist-documentation
+base_project/H_CLUS_Server/javadoc/* linguist-documentation
+
+
+extended_project/hclus_extension_server/javadoc/* linguist-documentation
+extended_project/hclus_extension_client/javadoc/* linguist-documentation
+extended_project/hclus_extension_server/src/main/resources/org/openjfx/style/* linguist-vendored
+extended_project/hclus_extension_client/src/main/resources/org/openjfx/style/* linguist-vendored
+extended_project/hclus_extension_client/src/main/resources/org/openjfx/d3.v7.min.js linguist-vendored

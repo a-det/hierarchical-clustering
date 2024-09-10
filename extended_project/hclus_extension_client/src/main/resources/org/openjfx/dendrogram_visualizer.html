@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dendrogramma</title>
+        <script src="./d3.v7.min.js"></script>
+        <style>
+            body {
+                background-color: #282a36;
+                color: #f8f8f2;
+                font-family: Arial;
+            }
+            .link {
+                fill: none;
+                stroke: #ccc;
+                stroke-width: 2px;
+            }
+            .node circle {
+                fill: #9580ff;
+                stroke: #52468c;
+                stroke-width: 3px;
+            }
+            .node text {
+                font: 12px sans-serif;
+                fill: #f8f8f2;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Vertical rectangle container on the side -->
+        <div
+            style="
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 200px;
+                height: 100%;
+                background-color: #6272a4;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center; /* Center vertically */
+                align-items: center; /* Center horizontally */
+            "
+        >
+            <!-- Slider for controlling depth -->
+            <div class="slider-container" style="text-align: center">
+                <label for="depth-slider" style="color: #fff"
+                    >Profondità:</label
+                >
+                <input
+                    type="range"
+                    id="depth-slider"
+                    min="0"
+                    max="0"
+                    value="0"
+                    step="1"
+                />
+                <span id="depth-value" style="color: #fff">0</span>
+            </div>
+
+            <div style="margin-top: 20px">
+                <label for="toggle-labels" style="color: #fff"
+                    >Etichette:</label
+                >
+            </div>
+            <input type="checkbox" id="toggle-labels" checked />
+
+            <!-- New element to display the depth at which it was first generated -->
+            <div
+                id="initial-depth"
+                style="margin-top: 20px; color: #fff; text-align: center"
+            >
+                <div>
+                    Profondità scelta al momento della generazione:
+                    <span
+                        id="generated-depth"
+                        style="
+                            display: inline-block;
+                            background-color: #9580ff;
+                            color: #232128;
+                            border-radius: 5px;
+                            padding: 2px;
+                            font-weight: bold;
+                        "
+                    >
+                        0
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Declare variables globally
+            let data = {};
+            let root;
+            let slider = document.getElementById("depth-slider");
+
+            // Set up dimensions
+            const width = 600;
+            const height = 400;
+            const margin = { top: 20, right: 90, bottom: 30, left: 200 };
+
+            // Create SVG
+            const svg = d3
+                .select("body")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            // Function to update the dendrogram based on the current depth and label visibility
+            function updateDendrogram(depth, showLabels) {
+                // Clear existing nodes and links
+                svg.selectAll(".link").remove();
+                svg.selectAll(".node").remove();
+
+                // Filter nodes and links based on the selected depth
+                const nodes = root
+                    .descendants()
+                    .filter((d) => d.height <= depth);
+                const links = root
+                    .links()
+                    .filter(
+                        (link) =>
+                            link.source.height <= depth &&
+                            link.target.height <= depth
+                    );
+
+                // Create links
+                svg.selectAll(".link")
+                    .data(links)
+                    .enter()
+                    .append("path")
+                    .attr("class", "link")
+                    .attr(
+                        "d",
+                        d3
+                            .linkVertical()
+                            .x((d) => d.x)
+                            .y((d) => d.y)
+                    );
+
+                // Create nodes
+                const node = svg
+                    .selectAll(".node")
+                    .data(nodes)
+                    .enter()
+                    .append("g")
+                    .attr(
+                        "class",
+                        (d) =>
+                            "node" +
+                            (d.children ? " node--internal" : " node--leaf")
+                    )
+                    .attr("transform", (d) => `translate(${d.x},${d.y})`);
+
+                // Add circles to nodes
+                node.append("circle").attr("r", 5);
+
+                // Add labels to nodes if showLabels is true
+                if (showLabels) {
+                    node.append("text")
+                        .attr("dy", ".35em")
+                        .attr("x", (d) => (d.children ? -13 : 13))
+                        .style("text-anchor", (d) =>
+                            d.children ? "end" : "start"
+                        )
+                        .text((d) => d.data.name);
+                }
+            }
+
+            // Function to fill data
+            function fillData(jsonString, depth) {
+                // Parse the JSON string
+                data = JSON.parse(jsonString);
+
+                // Create hierarchical layout
+                root = d3.hierarchy(data);
+                const treeLayout = d3.tree().size([width - 160, height]);
+                treeLayout(root);
+
+                // Determine the maximum depth of the tree
+                const maxDepth = d3.max(root.descendants(), (d) => d.depth);
+
+                // Set the slider range based on the tree's depth
+                slider.max = maxDepth;
+                slider.value = depth - 1;
+                document.getElementById("depth-value").textContent =
+                    +slider.value + 1;
+
+                document.getElementById("generated-depth").textContent = depth;
+
+                // Update the dendrogram with the new data
+                updateDendrogram(depth - 1, true);
+            }
+
+            // Event listener for the slider
+            slider.addEventListener("input", function () {
+                const depth = +this.value;
+                const showLabels =
+                    document.getElementById("toggle-labels").checked;
+                document.getElementById("depth-value").textContent =
+                    +this.value + 1;
+                updateDendrogram(depth, showLabels);
+            });
+
+            // Event listener for the checkbox to show/hide labels
+            document
+                .getElementById("toggle-labels")
+                .addEventListener("change", function () {
+                    const depth = +slider.value;
+                    const showLabels = this.checked;
+                    updateDendrogram(depth, showLabels);
+                });
+        </script>
+    </body>
+</html>

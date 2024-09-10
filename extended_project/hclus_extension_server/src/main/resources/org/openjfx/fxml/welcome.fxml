@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.WelcomeController">
+   <center>
+      <BorderPane BorderPane.alignment="CENTER">
+         <center>
+            <VBox alignment="CENTER" prefHeight="120.0" prefWidth="299.0">
+               <children>
+                  <GridPane alignment="CENTER" prefHeight="65.0" prefWidth="299.0">
+                    <columnConstraints>
+                      <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextField fx:id="portField" alignment="CENTER" prefHeight="36.0" prefWidth="96.0" promptText="8080" GridPane.columnIndex="1" />
+                        <VBox alignment="CENTER_RIGHT" prefHeight="101.0" prefWidth="254.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="20.0" prefWidth="290.0" text="Personalizza la porta:" />
+                              <Label alignment="CENTER" prefHeight="20.0" prefWidth="322.0" text="(default 8080)" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  <Button fx:id="startButton" maxHeight="35.0" minHeight="35.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="96.0" text="Start Server" />
+               </children>
+            </VBox>
+         </center>
+         <top>
+            <VBox alignment="CENTER" prefHeight="120.0" prefWidth="299.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="169.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </top>
+      </BorderPane>
+   </center>
+   <left>
+      <Pane prefHeight="400.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="400.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+   </right>
+   <top>
+      <Pane prefHeight="12.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+   </top>
+   <bottom>
+      <VBox alignment="TOP_CENTER" prefHeight="60.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="690.0" text="Status:" textAlignment="CENTER" />
+            <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="650.0" text="In attesa di azioni dell' utente" textAlignment="CENTER" />
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>

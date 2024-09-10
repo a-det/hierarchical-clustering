@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"hclus_extension_client","l":"org.openjfx"},{"m":"hclus_extension_client","l":"org.openjfx.connection"},{"m":"hclus_extension_client","l":"org.openjfx.controller"}];updateSearchResults();
